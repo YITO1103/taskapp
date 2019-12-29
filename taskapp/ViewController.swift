@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 各セルを選択した時に実行されるメソッド
     // UITableViewDelegateプロトコルのメソッドで、セルをタップした時にタスク入力画面に遷移させる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "cellSegue",sender: nil) // ←追加
     }
 
     // セルが削除が可能なことを伝えるメソッド

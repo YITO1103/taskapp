@@ -13,6 +13,7 @@
 		7F9E556C23B85E2200CC9338 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E556A23B85E2200CC9338 /* Main.storyboard */; };
 		7F9E556E23B85E2500CC9338 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E556D23B85E2500CC9338 /* Assets.xcassets */; };
 		7F9E557123B85E2500CC9338 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E556F23B85E2500CC9338 /* LaunchScreen.storyboard */; };
+		7F9E557923B8904900CC9338 /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E557823B8904900CC9338 /* InputViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		7F9E556D23B85E2500CC9338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F9E557023B85E2500CC9338 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F9E557223B85E2500CC9338 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F9E557823B8904900CC9338 /* InputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				7F9E556423B85E2200CC9338 /* AppDelegate.swift */,
 				7F9E556623B85E2200CC9338 /* SceneDelegate.swift */,
 				7F9E556823B85E2200CC9338 /* ViewController.swift */,
+				7F9E557823B8904900CC9338 /* InputViewController.swift */,
 				7F9E556A23B85E2200CC9338 /* Main.storyboard */,
 				7F9E556D23B85E2500CC9338 /* Assets.xcassets */,
 				7F9E556F23B85E2500CC9338 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				7F9E556923B85E2200CC9338 /* ViewController.swift in Sources */,
 				7F9E556523B85E2200CC9338 /* AppDelegate.swift in Sources */,
 				7F9E556723B85E2200CC9338 /* SceneDelegate.swift in Sources */,
+				7F9E557923B8904900CC9338 /* InputViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
