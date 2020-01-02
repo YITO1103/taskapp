@@ -12,8 +12,14 @@ import UserNotifications
 
 
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource ,UISearchBarDelegate{
+//class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    //検索バーの宣言
+    var searchBar: UISearchBar!
+    
+    
     @IBOutlet weak var tableView: UITableView!
     
     // Realmインスタンス
@@ -33,9 +39,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         
         //print(taskArray)
+        //EXT01 NavigationBarに検索バーを設置
+        setSearchBar()
         
     }
 
+    //EXT01 検索バーの設置
+
+    func setSearchBar() {
+        // NavigationBarにSearchBarをセット
+        if let navigationBarFrame = self.navigationController?.navigationBar.bounds {
+            //NavigationBarに適したサイズの検索バーを設置
+            let searchBar: UISearchBar = UISearchBar(frame: navigationBarFrame)
+            //デリゲート
+            searchBar.delegate = self
+            //プレースホルダー
+            searchBar.placeholder = "タスクを検索"
+            //検索バーのスタイル
+            searchBar.autocapitalizationType = UITextAutocapitalizationType.none
+            //NavigationTitleが置かれる場所に検索バーを設置
+            navigationItem.titleView = searchBar
+            //NavigationTitleのサイズを検索バーと同じにする
+            navigationItem.titleView?.frame = searchBar.frame
+        }
+    }
+
+
+//EXT02----------------S
+
+    // MARK: UISearchBarDelegate
+
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            // リストを全消去する
+            //self.list?.removeAll()
+                
+            // 検索文字列を生成する
+            let searchText = searchBar.text!
+                
+            
+            if searchText != "" {
+                //print(searchText)
+                self.search(searchText)
+            }
+
+        }
+        return true
+    }
+
+    // 検索
+    func search(_ text: String) {
+        
+        
+               print("検索文字：" + text)
+
+        
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            // 消去アイコンくタップ時
+            print("検索文字１：" + searchText)
+        }
+    }
+//EXT02----------------E
+    
     // データの数（＝セルの数）を返すメソッド
     // データの配列であるtaskArrayの要素数を返す
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
