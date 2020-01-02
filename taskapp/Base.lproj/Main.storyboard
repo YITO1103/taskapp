@@ -80,34 +80,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="タイトル" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0z-as-S65">
-                                <rect key="frame" x="10" y="98" width="394" height="20.5"/>
+                                <rect key="frame" x="10" y="172.5" width="394" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="テキストフィールド" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T9h-9g-yTv">
+                                <rect key="frame" x="10" y="203" width="394" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="カテゴリ用テキストフィールド" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bdz-Th-qTk">
                                 <rect key="frame" x="10" y="128.5" width="394" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="テキスト" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iWE-6A-OHE">
-                                <rect key="frame" x="10" y="203" width="394" height="120"/>
+                                <rect key="frame" x="10" y="277.5" width="394" height="120"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="8tC-GM-QGS"/>
+                                    <constraint firstAttribute="height" constant="120" id="h5v-vg-TwF"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="P2Q-lJ-28e">
-                                <rect key="frame" x="0.0" y="333" width="414" height="120"/>
+                                <rect key="frame" x="0.0" y="407.5" width="414" height="120"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="A65-9i-gik"/>
                                     <constraint firstAttribute="height" constant="120" id="jFP-4n-L4e"/>
                                 </constraints>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6Q-jb-cWi">
-                                <rect key="frame" x="10" y="172.5" width="394" height="20.5"/>
+                                <rect key="frame" x="10" y="247" width="394" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カテゴリ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oyd-7u-2El">
+                                <rect key="frame" x="10" y="98" width="414" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -115,26 +127,36 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="top" secondItem="iWE-6A-OHE" secondAttribute="bottom" constant="10" id="3fq-3l-zy4"/>
-                            <constraint firstItem="V0z-as-S65" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="5Eh-xb-Zu9"/>
-                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" id="Hdt-v4-qvm"/>
-                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="trailing" secondItem="upg-ka-5Fe" secondAttribute="trailing" id="HsP-61-a1I"/>
-                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="T9h-9g-yTv" secondAttribute="trailing" constant="10" id="JNa-wo-vY1"/>
-                            <constraint firstItem="iWE-6A-OHE" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="a5c-1t-76c"/>
-                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="V0z-as-S65" secondAttribute="trailing" constant="10" id="gIw-r4-osB"/>
-                            <constraint firstItem="T9h-9g-yTv" firstAttribute="top" secondItem="V0z-as-S65" secondAttribute="bottom" constant="10" id="iAu-YH-qMF"/>
-                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="iWE-6A-OHE" secondAttribute="trailing" constant="10" id="kos-NK-P6M"/>
-                            <constraint firstItem="V0z-as-S65" firstAttribute="top" secondItem="upg-ka-5Fe" secondAttribute="top" constant="10" id="qyg-kW-gva"/>
-                            <constraint firstItem="iWE-6A-OHE" firstAttribute="top" secondItem="C6Q-jb-cWi" secondAttribute="bottom" constant="10" id="rhw-NB-vac"/>
-                            <constraint firstItem="C6Q-jb-cWi" firstAttribute="top" secondItem="T9h-9g-yTv" secondAttribute="bottom" constant="10" id="swb-8Z-lU1"/>
-                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="C6Q-jb-cWi" secondAttribute="trailing" constant="10" id="tjQ-OC-yyj"/>
-                            <constraint firstItem="C6Q-jb-cWi" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="wVc-Cn-r0b"/>
-                            <constraint firstItem="T9h-9g-yTv" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="wvQ-6z-ijc"/>
+                            <constraint firstItem="C6Q-jb-cWi" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="1fw-Sd-SgP"/>
+                            <constraint firstItem="V0z-as-S65" firstAttribute="top" secondItem="bdz-Th-qTk" secondAttribute="bottom" constant="10" id="2HM-ct-hbb"/>
+                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" id="9t8-Kb-iAP"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="T9h-9g-yTv" secondAttribute="trailing" constant="10" id="A8g-Yn-1lm"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="C6Q-jb-cWi" secondAttribute="trailing" constant="10" id="DL3-tW-Iey"/>
+                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="top" secondItem="iWE-6A-OHE" secondAttribute="bottom" constant="10" id="E2h-M3-vUX"/>
+                            <constraint firstItem="bdz-Th-qTk" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="EVo-jh-Afj"/>
+                            <constraint firstItem="T9h-9g-yTv" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="Eg3-Pt-FGQ"/>
+                            <constraint firstItem="iWE-6A-OHE" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="JQi-au-ng4"/>
+                            <constraint firstItem="iWE-6A-OHE" firstAttribute="top" secondItem="C6Q-jb-cWi" secondAttribute="bottom" constant="10" id="Lmp-Zb-Amc"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="iWE-6A-OHE" secondAttribute="trailing" constant="10" id="Mqy-J9-ZFd"/>
+                            <constraint firstItem="V0z-as-S65" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="PAd-zU-xJr"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="V0z-as-S65" secondAttribute="trailing" constant="10" id="Qm5-nN-IbA"/>
+                            <constraint firstItem="Oyd-7u-2El" firstAttribute="top" secondItem="upg-ka-5Fe" secondAttribute="top" constant="10" id="RIV-7r-dmi"/>
+                            <constraint firstItem="iWE-6A-OHE" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="fc3-co-Nnt"/>
+                            <constraint firstItem="P2Q-lJ-28e" firstAttribute="trailing" secondItem="upg-ka-5Fe" secondAttribute="trailing" id="inA-yG-Et2"/>
+                            <constraint firstItem="T9h-9g-yTv" firstAttribute="top" secondItem="V0z-as-S65" secondAttribute="bottom" constant="10" id="jdN-NU-xxA"/>
+                            <constraint firstItem="iWE-6A-OHE" firstAttribute="top" secondItem="C6Q-jb-cWi" secondAttribute="bottom" constant="10" id="lyo-al-vOi"/>
+                            <constraint firstItem="Oyd-7u-2El" firstAttribute="trailing" secondItem="upg-ka-5Fe" secondAttribute="trailing" constant="10" id="ob4-Qx-h6G"/>
+                            <constraint firstItem="Oyd-7u-2El" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="q5e-EH-r9M"/>
+                            <constraint firstItem="C6Q-jb-cWi" firstAttribute="top" secondItem="T9h-9g-yTv" secondAttribute="bottom" constant="10" id="rqV-sa-qrL"/>
+                            <constraint firstItem="C6Q-jb-cWi" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="t1A-eZ-VDJ"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="bdz-Th-qTk" secondAttribute="trailing" constant="10" id="vCZ-qL-3LC"/>
+                            <constraint firstItem="bdz-Th-qTk" firstAttribute="top" secondItem="Oyd-7u-2El" secondAttribute="bottom" constant="10" id="ywj-LE-iQY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="upg-ka-5Fe"/>
                     </view>
                     <navigationItem key="navigationItem" id="iPF-Do-bzc"/>
                     <connections>
+                        <outlet property="categoryTextField" destination="bdz-Th-qTk" id="VoN-qc-tTF"/>
                         <outlet property="contentsTextView" destination="iWE-6A-OHE" id="NPL-mv-k92"/>
                         <outlet property="datePicker" destination="P2Q-lJ-28e" id="nV3-xx-fkS"/>
                         <outlet property="titleTextField" destination="T9h-9g-yTv" id="0iy-pv-8U5"/>
