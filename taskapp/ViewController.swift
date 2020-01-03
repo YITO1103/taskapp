@@ -90,16 +90,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     // 検索
     func search(_ text: String) {
-        
-        
-               print("検索文字：" + text)
-
-        
+        let sSearchStr = "*" + text + "*"
+        print("検索文字：" + text)
+        taskArray = try! Realm().objects(Task.self).filter("category like %@",sSearchStr).sorted(byKeyPath: "date", ascending: true)
+        print(taskArray)
+        tableView.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            // 消去アイコンくタップ時
-            print("検索文字１：" + searchText)
+            // 消去アイコンくタップ時のみ
+            taskArray = try! Realm().objects(Task.self).sorted(byKeyPath: "date", ascending: true)
+            print(taskArray)
+            tableView.reloadData()
         }
     }
 //EXT02----------------E
