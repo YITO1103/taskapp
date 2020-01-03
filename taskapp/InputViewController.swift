@@ -65,17 +65,18 @@ class InputViewController: UIViewController {
     // メソッドは遷移する際に、画面が非表示になるとき呼ばれる
     override func viewWillDisappear(_ animated: Bool) {
         
-
-        try! realm.write {
-            self.task.category = self.categoryTextField.text!
-            self.task.title = self.titleTextField.text!
-            self.task.contents = self.contentsTextView.text
-            self.task.date = self.datePicker.date
-            self.realm.add(self.task, update: .modified)
+        if bEdit {
+            if self.titleTextField.text! != "" {
+                try! realm.write {
+                    self.task.category = self.categoryTextField.text!
+                    self.task.title = self.titleTextField.text!
+                    self.task.contents = self.contentsTextView.text
+                    self.task.date = self.datePicker.date
+                    self.realm.add(self.task, update: .modified)
+                }
+                setNotification(task: task)   // 追加
+            }
         }
-
-        setNotification(task: task)   // 追加
-
         super.viewWillDisappear(animated)
     }
 
