@@ -144,6 +144,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // 各セルを選択した時に実行されるメソッド
     // UITableViewDelegateプロトコルのメソッドで、セルをタップした時にタスク入力画面に遷移させる
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        
         performSegue(withIdentifier: "cellSegue",sender: nil)
     }
 
@@ -161,6 +164,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // セルをタップした時
             let indexPath = self.tableView.indexPathForSelectedRow
             inputViewController.task = taskArray[indexPath!.row]
+            inputViewController.bEdit=false
             print(taskArray[indexPath!.row])
         } else {
             // +ボタンをタップした時
@@ -171,8 +175,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 task.id = allTasks.max(ofProperty: "id")! + 1
                 print(task)
             }
-
             inputViewController.task = task
+            inputViewController.bEdit=true
+
         }
     }
     // 入力画面から戻ってきた時に TableView を更新させる

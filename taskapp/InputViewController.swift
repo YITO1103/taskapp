@@ -18,6 +18,9 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    
+    var bEdit:Bool = true
+
     let realm = try! Realm()    // 追加する
     var task: Task!   //
     
@@ -33,17 +36,37 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
+        print(bEdit)
+        setMode(bEdit)
         
     }
+    func setMode( _ bEdit :Bool) {
 
+
+        if bEdit {
+            categoryTextField.isEnabled = true
+            titleTextField.isEnabled = true
+            contentsTextView.isEditable = true
+            datePicker.isEnabled = true
+            datePicker.isSelected = true
+        }
+        else {
+            categoryTextField.isEnabled = false
+            titleTextField.isEnabled = false
+            contentsTextView.isEditable = false
+            datePicker.isSelected = false
+            datePicker.isEnabled = false
+        }
+    }
     @objc func dismissKeyboard(){
         // キーボードを閉じる
         view.endEditing(true)
     }
     // メソッドは遷移する際に、画面が非表示になるとき呼ばれる
     override func viewWillDisappear(_ animated: Bool) {
+        
+
         try! realm.write {
-            
             self.task.category = self.categoryTextField.text!
             self.task.title = self.titleTextField.text!
             self.task.contents = self.contentsTextView.text
