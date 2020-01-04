@@ -128,7 +128,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Kbq-Rn-nkj"/>
                                 </constraints>
-                                <state key="normal" title="登録して一覧に戻る"/>
+                                <state key="normal" title="add/red"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -169,6 +169,7 @@
                         <outlet property="contentsTextView" destination="iWE-6A-OHE" id="NPL-mv-k92"/>
                         <outlet property="datePicker" destination="P2Q-lJ-28e" id="nV3-xx-fkS"/>
                         <outlet property="inputViewSafeArea" destination="m4P-ze-iAu" id="5Np-dJ-H1X"/>
+                        <outlet property="registButton" destination="ZGO-fg-nZG" id="vvI-s9-7oR"/>
                         <outlet property="titleTextField" destination="T9h-9g-yTv" id="0iy-pv-8U5"/>
                     </connections>
                 </viewController>

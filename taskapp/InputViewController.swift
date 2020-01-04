@@ -21,6 +21,7 @@ class InputViewController: UIViewController {
     
     @IBOutlet var inputViewSafeArea: UIView!
     
+    @IBOutlet weak var registButton: UIButton!
     
     
     
@@ -49,21 +50,19 @@ class InputViewController: UIViewController {
 
         let bgColor =
             (bEdit ? UIColor.init(red: 235, green: 235, blue: 235, alpha: 0.3):UIColor.systemGroupedBackground)
-            
+        let sRegButtonCaption = (bEdit ? "登録して一覧に戻る" : "編集する")
         categoryTextField.isEnabled = bEdit
         titleTextField.isEnabled = bEdit
         contentsTextView.isEditable = bEdit
         datePicker.isEnabled = bEdit
         datePicker.isSelected = bEdit
-        
-        
+                
         inputViewSafeArea.backgroundColor = bgColor
         inputViewSafeArea.isOpaque = bEdit
 
-        
         categoryTextField.backgroundColor = inputViewSafeArea.backgroundColor
         titleTextField.backgroundColor = inputViewSafeArea.backgroundColor
-
+        registButton.setTitle(sRegButtonCaption, for: .normal)
     }
     @objc func dismissKeyboard(){
         // キーボードを閉じる
