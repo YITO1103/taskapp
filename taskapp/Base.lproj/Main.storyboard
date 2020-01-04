@@ -123,9 +123,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZGO-fg-nZG">
+                                <rect key="frame" x="0.0" y="822" width="414" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Kbq-Rn-nkj"/>
+                                </constraints>
+                                <state key="normal" title="登録して一覧に戻る"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="ZGO-fg-nZG" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" id="17f-BB-Pjd"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="bottom" secondItem="ZGO-fg-nZG" secondAttribute="bottom" constant="10" id="1cV-7y-L7z"/>
                             <constraint firstItem="C6Q-jb-cWi" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="1fw-Sd-SgP"/>
                             <constraint firstItem="V0z-as-S65" firstAttribute="top" secondItem="bdz-Th-qTk" secondAttribute="bottom" constant="10" id="2HM-ct-hbb"/>
                             <constraint firstItem="P2Q-lJ-28e" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" id="9t8-Kb-iAP"/>
@@ -140,6 +149,7 @@
                             <constraint firstItem="V0z-as-S65" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="PAd-zU-xJr"/>
                             <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="V0z-as-S65" secondAttribute="trailing" constant="10" id="Qm5-nN-IbA"/>
                             <constraint firstItem="Oyd-7u-2El" firstAttribute="top" secondItem="upg-ka-5Fe" secondAttribute="top" constant="10" id="RIV-7r-dmi"/>
+                            <constraint firstItem="upg-ka-5Fe" firstAttribute="trailing" secondItem="ZGO-fg-nZG" secondAttribute="trailing" id="W5v-vK-keg"/>
                             <constraint firstItem="iWE-6A-OHE" firstAttribute="leading" secondItem="upg-ka-5Fe" secondAttribute="leading" constant="10" id="fc3-co-Nnt"/>
                             <constraint firstItem="P2Q-lJ-28e" firstAttribute="trailing" secondItem="upg-ka-5Fe" secondAttribute="trailing" id="inA-yG-Et2"/>
                             <constraint firstItem="T9h-9g-yTv" firstAttribute="top" secondItem="V0z-as-S65" secondAttribute="bottom" constant="10" id="jdN-NU-xxA"/>

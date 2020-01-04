@@ -61,6 +61,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             navigationItem.titleView = searchBar
             //NavigationTitleのサイズを検索バーと同じにする
             navigationItem.titleView?.frame = searchBar.frame
+            
+            navigationItem.backBarButtonItem  = UIBarButtonItem(title: "一覧に戻る", style: .plain , target: nil, action: nil)
         }
     }
 
