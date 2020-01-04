@@ -19,6 +19,11 @@ class InputViewController: UIViewController {
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet var inputViewSafeArea: UIView!
+    
+    
+    
+    
     var bEdit:Bool = true
 
     let realm = try! Realm()    // 追加する
@@ -42,21 +47,23 @@ class InputViewController: UIViewController {
     }
     func setMode( _ bEdit :Bool) {
 
+        let bgColor =
+            (bEdit ? UIColor.init(red: 235, green: 235, blue: 235, alpha: 0.3):UIColor.systemGroupedBackground)
+            
+        categoryTextField.isEnabled = bEdit
+        titleTextField.isEnabled = bEdit
+        contentsTextView.isEditable = bEdit
+        datePicker.isEnabled = bEdit
+        datePicker.isSelected = bEdit
+        
+        
+        inputViewSafeArea.backgroundColor = bgColor
+        inputViewSafeArea.isOpaque = bEdit
 
-        if bEdit {
-            categoryTextField.isEnabled = true
-            titleTextField.isEnabled = true
-            contentsTextView.isEditable = true
-            datePicker.isEnabled = true
-            datePicker.isSelected = true
-        }
-        else {
-            categoryTextField.isEnabled = false
-            titleTextField.isEnabled = false
-            contentsTextView.isEditable = false
-            datePicker.isSelected = false
-            datePicker.isEnabled = false
-        }
+        
+        categoryTextField.backgroundColor = inputViewSafeArea.backgroundColor
+        titleTextField.backgroundColor = inputViewSafeArea.backgroundColor
+
     }
     @objc func dismissKeyboard(){
         // キーボードを閉じる
