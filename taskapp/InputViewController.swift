@@ -13,7 +13,7 @@ import UserNotifications
 
 
 class InputViewController: UIViewController {
-
+        
     @IBOutlet weak var categoryTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
@@ -23,54 +23,123 @@ class InputViewController: UIViewController {
     @IBOutlet var inputViewSafeArea: UIView!
     
     @IBOutlet weak var registButton: UIButton!
-    
-    
     @IBAction func registButton(_ sender: Any) {
-        
-        print("registButton")
-        
         if bEdit {
-            // 編集中
-            print("navigationItemButtonBack")
-            // 更新
-            jobUpdate()
-            // 一覧に遷移
-            self.navigationController?.popViewController(animated: true)
+                    
+            let sInputN = getInputValues()
+            if  !sInput.elementsEqual(sInputN) {
+                //--------------------------------
+                // ① UIAlertControllerクラスのインスタンスを生成
+                // タイトル, メッセージ, Alertのスタイルを指定する
+                // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+                let alert: UIAlertController = UIAlertController(title: "確認", message: "登録します。よろしいですか？。\n登録後一覧画面に遷移します。", preferredStyle:  UIAlertController.Style.alert)
+
+                // ② Actionの設定
+                // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+                // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+                // OKボタン
+                let defaultAction: UIAlertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    // 登録
+                    self.jobUpdate()
+                    // 一覧に遷移
+                    self.navigationController?.popViewController(animated: true)
+                })
+                // キャンセルボタン
+                let cancelAction: UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler:{
+                    // ボタンが押された時の処理を書く（クロージャ実装）
+                    (action: UIAlertAction!) -> Void in
+                    return
+                })
+
+                // ③ UIAlertControllerにActionを追加
+                alert.addAction(cancelAction)
+                alert.addAction(defaultAction)
+
+                // ④ Alertを表示
+                present(alert, animated: true, completion: nil)
+                //---------------------------------
+            }
         }
         else{
             // 閲覧中
             bEdit = true
             setMode()
         }
-
     }
-    
-    var bEdit:Bool = false
 
+    var bEdit:Bool = false
     let realm = try! Realm()    // 追加する
     var task: Task!   //
     
-    
+    var sInput = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // 背景をタップしたらdismissKeyboardメソッドを呼ぶように設定する
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target:self, action:#selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
 
-        
         categoryTextField.text = task.category
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
-        //print(bEdit)
+
+        sInput = getInputValues()
+        print(sInput)
         setMode()
+
+        let barButton = UIBarButtonItem(title: "一覧",style: .plain, target: self, action: #selector(barButtonTapped(_:)))
+
+        navigationItem.leftBarButtonItem = barButton
+
+    }
+    
+    @objc func barButtonTapped(_ sender: UIBarButtonItem) {
         
+        let sInputN = getInputValues()
+        if !sInput.elementsEqual(sInputN) {
+            //--------------------------------
+            // ① UIAlertControllerクラスのインスタンスを生成
+            // タイトル, メッセージ, Alertのスタイルを指定する
+            // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+            let alert: UIAlertController = UIAlertController(title: "確認", message: "変更されてます。\n内容を破棄してもいいですか？", preferredStyle:  UIAlertController.Style.alert)
+
+            // ② Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "ハイ", style: UIAlertAction.Style.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+                self.navigationController?.popViewController(animated: true)
+            })
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+                return
+            })
+
+            // ③ UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+
+            // ④ Alertを表示
+            present(alert, animated: true, completion: nil)
+            //---------------------------------
+        }
+        else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     func setMode() {
-
         let bgColor =
             (bEdit ? UIColor.init(red: 235, green: 235, blue: 235, alpha: 0.3):UIColor.systemGroupedBackground)
-        let sRegButtonCaption = (bEdit ? "登録して一覧に戻る" : "編集する")
+        let sRegButtonCaption = (bEdit ? "登録する" : "編集する")
         categoryTextField.isEnabled = bEdit
         titleTextField.isEnabled = bEdit
         contentsTextView.isEditable = bEdit
@@ -99,36 +168,31 @@ class InputViewController: UIViewController {
             }
             setNotification(task: task)   // 追加
         }
-
-
-
     }
+    func getInputValues() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let dateString:String = formatter.string(from: datePicker.date)
 
+        let sStr =
+        categoryTextField.text!
+        + titleTextField.text!
+        + self.contentsTextView.text
+        + dateString
+        
+        return sStr
+    }
     
+
     // メソッドは遷移する際に、画面が非表示になるとき呼ばれる
     override func viewWillDisappear(_ animated: Bool) {
-        /*
-        if bEdit {
-            if self.titleTextField.text! != "" {
-                try! realm.write {
-                    self.task.category = self.categoryTextField.text!
-                    self.task.title = self.titleTextField.text!
-                    self.task.contents = self.contentsTextView.text
-                    self.task.date = self.datePicker.date
-                    self.realm.add(self.task, update: .modified)
-                }
-                setNotification(task: task)   // 追加
-            }
-         }
-        */
-        
-        super.viewWillDisappear(animated)
-    }
+        // 使わない
+     }
 
     // タスクのローカル通知を登録する --- ここから ---
     func setNotification(task: Task) {
         let content = UNMutableNotificationContent()
-
 
         if task.category == "" {
            content.categoryIdentifier = "(カテゴリなし)"
@@ -172,5 +236,5 @@ class InputViewController: UIViewController {
             }
         }
     }
-  
+
 }
