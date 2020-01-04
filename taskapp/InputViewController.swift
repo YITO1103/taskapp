@@ -23,50 +23,79 @@ class InputViewController: UIViewController {
     @IBOutlet var inputViewSafeArea: UIView!
     
     @IBOutlet weak var registButton: UIButton!
+    
     @IBAction func registButton(_ sender: Any) {
+
         if bEdit {
-                    
+                 
             let sInputN = getInputValues()
             if  !sInput.elementsEqual(sInputN) {
-                //--------------------------------
-                // ① UIAlertControllerクラスのインスタンスを生成
-                // タイトル, メッセージ, Alertのスタイルを指定する
-                // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
-                let alert: UIAlertController = UIAlertController(title: "確認", message: "登録します。よろしいですか？。\n登録後一覧画面に遷移します。", preferredStyle:  UIAlertController.Style.alert)
+             
+                 //
+                 var sMsg = ""
+                 if titleTextField.text == nil || titleTextField.text == "" {
+                    sMsg = "タイトル"
+                 }
+                 if contentsTextView.text == nil || contentsTextView.text == "" {
+                     if sMsg.count>0 {
+                         sMsg += "、"
+                     }
+                     sMsg += "内容"
+                 }
+                if !sMsg.isEmpty {
+                    let title = "エラー"
+                    let message = sMsg + "は必須です。"
+                    let okText = "OK"
 
-                // ② Actionの設定
-                // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-                // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
-                // OKボタン
-                let defaultAction: UIAlertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default, handler:{
-                    // ボタンが押された時の処理を書く（クロージャ実装）
-                    (action: UIAlertAction!) -> Void in
-                    // 登録
-                    self.jobUpdate()
-                    // 一覧に遷移
-                    self.navigationController?.popViewController(animated: true)
-                })
-                // キャンセルボタン
-                let cancelAction: UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler:{
-                    // ボタンが押された時の処理を書く（クロージャ実装）
-                    (action: UIAlertAction!) -> Void in
+                    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+                    let okayButton = UIAlertAction(title: okText, style: UIAlertAction.Style.cancel, handler: nil)
+                    alert.addAction(okayButton)
+                    present(alert, animated: true, completion: nil)
                     return
-                })
-
-                // ③ UIAlertControllerにActionを追加
-                alert.addAction(cancelAction)
-                alert.addAction(defaultAction)
-
-                // ④ Alertを表示
-                present(alert, animated: true, completion: nil)
-                //---------------------------------
+                }
+  
             }
+
+            //--------------------------------
+            // ① UIAlertControllerクラスのインスタンスを生成
+            // タイトル, メッセージ, Alertのスタイルを指定する
+            // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+            let alert: UIAlertController = UIAlertController(title: "確認", message: "登録します。よろしいですか？。\n登録後一覧画面に遷移します。", preferredStyle:  UIAlertController.Style.alert)
+
+            // ② Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+
+            let defaultAction: UIAlertAction = UIAlertAction(title: "はい", style: UIAlertAction.Style.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                // 登録
+                self.jobUpdate()
+                // 一覧に遷移
+                self.navigationController?.popViewController(animated: true)
+            })
+
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "いいえ", style: UIAlertAction.Style.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                return
+            })
+
+            // ③ UIAlertControllerにActionを追加
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            // ④ Alertを表示
+            present(alert, animated: true, completion: nil)
+            //---------------------------------
         }
-        else{
+        else {
             // 閲覧中
             bEdit = true
             setMode()
         }
+ 
     }
 
     var bEdit:Bool = false
@@ -86,17 +115,24 @@ class InputViewController: UIViewController {
         contentsTextView.text = task.contents
         datePicker.date = task.date
 
+        // 枠のカラー
+        contentsTextView.layer.borderColor = UIColor.gray.cgColor
+        // 枠の幅
+        contentsTextView.layer.borderWidth = 1.0
+        // 枠を角丸にする場合
+        contentsTextView.layer.cornerRadius = 0
+        contentsTextView.layer.masksToBounds = true
         sInput = getInputValues()
         print(sInput)
         setMode()
 
-        let barButton = UIBarButtonItem(title: "一覧",style: .plain, target: self, action: #selector(barButtonTapped(_:)))
+        let barButton = UIBarButtonItem(title: "一覧",style: .plain, target: self, action: #selector(barLeftButtonTapped(_:)))
 
         navigationItem.leftBarButtonItem = barButton
 
     }
     
-    @objc func barButtonTapped(_ sender: UIBarButtonItem) {
+    @objc func barLeftButtonTapped(_ sender: UIBarButtonItem) {
         
         let sInputN = getInputValues()
         if !sInput.elementsEqual(sInputN) {
