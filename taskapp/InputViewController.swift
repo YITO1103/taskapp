@@ -18,14 +18,34 @@ class InputViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var navigationItemButtonBack: UINavigationItem!
     
     @IBOutlet var inputViewSafeArea: UIView!
     
     @IBOutlet weak var registButton: UIButton!
     
     
+    @IBAction func registButton(_ sender: Any) {
+        
+        print("registButton")
+        
+        if bEdit {
+            // 編集中
+            print("navigationItemButtonBack")
+            // 更新
+            jobUpdate()
+            // 一覧に遷移
+            self.navigationController?.popViewController(animated: true)
+        }
+        else{
+            // 閲覧中
+            bEdit = true
+            setMode()
+        }
+
+    }
     
-    var bEdit:Bool = true
+    var bEdit:Bool = false
 
     let realm = try! Realm()    // 追加する
     var task: Task!   //
@@ -42,11 +62,11 @@ class InputViewController: UIViewController {
         titleTextField.text = task.title
         contentsTextView.text = task.contents
         datePicker.date = task.date
-        print(bEdit)
-        setMode(bEdit)
+        //print(bEdit)
+        setMode()
         
     }
-    func setMode( _ bEdit :Bool) {
+    func setMode() {
 
         let bgColor =
             (bEdit ? UIColor.init(red: 235, green: 235, blue: 235, alpha: 0.3):UIColor.systemGroupedBackground)
@@ -68,9 +88,26 @@ class InputViewController: UIViewController {
         // キーボードを閉じる
         view.endEditing(true)
     }
+    func jobUpdate() {
+        if self.titleTextField.text! != "" {
+            try! realm.write {
+                self.task.category = self.categoryTextField.text!
+                self.task.title = self.titleTextField.text!
+                self.task.contents = self.contentsTextView.text
+                self.task.date = self.datePicker.date
+                self.realm.add(self.task, update: .modified)
+            }
+            setNotification(task: task)   // 追加
+        }
+
+
+
+    }
+
+    
     // メソッドは遷移する際に、画面が非表示になるとき呼ばれる
     override func viewWillDisappear(_ animated: Bool) {
-        
+        /*
         if bEdit {
             if self.titleTextField.text! != "" {
                 try! realm.write {
@@ -82,7 +119,9 @@ class InputViewController: UIViewController {
                 }
                 setNotification(task: task)   // 追加
             }
-        }
+         }
+        */
+        
         super.viewWillDisappear(animated)
     }
 
